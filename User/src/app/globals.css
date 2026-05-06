@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overflow-x: hidden;
+}
+
+/* Scrollbar styles for all scrollable elements */
+::-webkit-scrollbar {
+  width: 4px;   /* Width for vertical scrollbars */
+  height: 4px;  /* Height for horizontal scrollbars */
+}
+
+/* Track - the area behind the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f5e7f9;
+}
+
+/* Handle - the draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #e49df9;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #969696;
+}
