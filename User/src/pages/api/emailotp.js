@@ -17,16 +17,60 @@ export default async function emailOTP(req, res) {
     
 
     const mailOptions = {
-      from: {
-        name: "okhaladastarkhan",
-        address: process.env.EMAIL_USER,
-      },
-      to: [`${req.body.email}`], // list of receivers
-      subject: "Opt verification for your okhaladastarkhan account", // Subject line
-      text: `Please DO NOT share to any one
-          Your OPT verivifation code is ${RandomOTP} 
-               `, // plain text body
-    };
+  from: {
+    name: "Okhla Dastarkhan",
+    address: process.env.EMAIL_USER,
+  },
+  to: req.body.email,
+  subject: "OTP Verification - Okhla Dastarkhan Account",
+  text: `
+Hello,
+
+Your OTP verification code for your Okhla Dastarkhan account is:
+
+${RandomOTP}
+
+Please do not share this OTP with anyone for security reasons.
+
+This OTP is valid for a limited time only.
+
+Thank you,
+Team Okhla Dastarkhan
+  `,
+  html: `
+    <div style="font-family: Arial, sans-serif; padding: 20px; color: #333;">
+      <h2 style="color: #ff6b00;">Okhla Dastarkhan</h2>
+      
+      <p>Hello,</p>
+      
+      <p>Your OTP verification code is:</p>
+      
+      <div style="
+        font-size: 28px;
+        font-weight: bold;
+        letter-spacing: 5px;
+        background: #f4f4f4;
+        padding: 15px;
+        text-align: center;
+        border-radius: 8px;
+        margin: 20px 0;
+      ">
+        ${RandomOTP}
+      </div>
+
+      <p style="color: red;">
+        Please do not share this OTP with anyone.
+      </p>
+
+      <p>This OTP is valid for a limited time only.</p>
+
+      <br />
+
+      <p>Thank you,</p>
+      <p><strong>Team Okhla Dastarkhan</strong></p>
+    </div>
+  `,
+};
     
 
     const sendMail = async (transporter, mailOptions) => {

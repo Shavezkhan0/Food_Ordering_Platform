@@ -8,7 +8,6 @@ import Toastify from 'toastify-js';
 import "toastify-js/src/toastify.css";
 import { BiShow, BiHide } from "react-icons/bi";
 import LoadingBar from "react-top-loading-bar";
-import LoadingBar from "react-top-loading-bar";
 
 
 const SignUp = () => {

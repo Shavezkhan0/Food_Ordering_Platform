@@ -92,9 +92,7 @@ const ProductPage = ({ params }) => {
 
     const checkServiceAbility = async () => {
         try {
-            const response = await fetch('/api/pincode');
-            const pinJson = await response.json();
-            const isServiceable = Object.keys(pinJson).includes(pin);
+            const isServiceable = pin && pin.length === 6;
 
             if (isServiceable) {
                 setServiceable(true);
@@ -111,7 +109,7 @@ const ProductPage = ({ params }) => {
 
             } else {
                 setServiceable(false);
-                toast.error('You are not Servicable', {
+                toast.error('Please enter a valid 6-digit pincode', {
                     position: "top-right",
                     autoClose: 2000,
                     hideProgressBar: false,
@@ -123,7 +121,7 @@ const ProductPage = ({ params }) => {
                 });
             }
         } catch (error) {
-            console.error('Error fetching pincodes:', error);
+            console.error('Error checking pincode:', error);
         }
     };
 

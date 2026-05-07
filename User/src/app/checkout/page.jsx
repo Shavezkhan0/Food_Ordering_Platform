@@ -221,30 +221,21 @@ const Checkout = () => {
   const handleChangePincode = (e) => {
     const pincode = e.target.value;
     if (pincode.length === 6) {
-      if (pincode.length === 6 && allPin[pincode]) {
+      // Bypass check: allow any 6-digit pincode
+      if (allPin && allPin[pincode]) {
         setValue("city", allPin[pincode].city);
         setValue("state", allPin[pincode].state);
         setValue("country", allPin[pincode].country);
-        setisServiceable(true)
       } else {
-        setisServiceable(false)
-        setError("pincode", {
-          type: "manual",
-          message: "This pincode code is not serviceable"
-        });
-        Toastify({
-          text: `This pincode code is not serviceable`,
-          duration: 3000,
-          close: true,
-          gravity: "top", // `top` or `bottom`
-          position: "right", // `left`, `center` or `right`
-          style: { background: "linear-gradient(to right,#ff0000, #ff6666)" },
-        }).showToast();
-        return ("This Pincode is not servicable");
-
+        setValue("city", "City");
+        setValue("state", "State");
+        setValue("country", "India");
       }
+      setisServiceable(true);
+      setError("pincode", null);
+    } else {
+      setisServiceable(false);
     }
-
   }
 
 

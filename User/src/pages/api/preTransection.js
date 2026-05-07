@@ -64,14 +64,12 @@ export default async function payment(req, res) {
 
 
 
-    axios
-      .post(`${process.env.NEXT_PUBLIC_HOST}/api/postTransection`, savedOrder)
-      .then((response) => {
-        console.log("Post Transaction successful:");
-      })
-      .catch((error) => {
-        console.error("Error posting transaction:", error);
-      });
+    try {
+      await axios.post(`${process.env.NEXT_PUBLIC_HOST}/api/postTransection`, savedOrder);
+      console.log("Post Transaction successful:");
+    } catch (error) {
+      console.error("Error posting transaction:", error);
+    }
 
       const userExist = await User.findOneAndUpdate(
         { email: req.body.email },
